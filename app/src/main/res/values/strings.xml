@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Ride</string>
+    <string name="splash_title">Ride. Park. Go.</string>
+    <string name="splash_sub_title">Just book your bike and enjoy your ride</string>
+    <string name="welcome">Welcome</string>
+    <string name="signin">Please sign in to your account</string>
+    <string name="generate_otp">Generate Otp</string>
+    <string name="resend_otp">Resend Otp</string>
+    <string name="permissionDenied">Permission denied</string>
+    <string name="map_key">AIzaSyBN0Q6MskTz8PqQBAJCF-3ERIzClFFKYZA</string>
+    <string name="privacy">By continuing, you accept our </string>
+    <string name="policy">Privacy Policy</string>
+    <string name="terms">and Terms and use.</string>
+</resources>
