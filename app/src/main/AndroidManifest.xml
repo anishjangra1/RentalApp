@@ -20,7 +20,7 @@
         android:theme="@style/Theme.Ride">
         <activity android:name=".GenerateOtpActivity"
             ></activity>
-        <activity android:name=".MapActivity"></activity>
+        <activity android:name=".BpMapActivity"></activity>
         <activity android:name=".PrivacypolicyActivity"></activity>
         <activity android:name=".GetStartedActivity">
             <intent-filter>

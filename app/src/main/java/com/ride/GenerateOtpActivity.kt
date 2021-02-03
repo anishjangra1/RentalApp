@@ -69,7 +69,7 @@ class GenerateOtpActivity : AppCompatActivity() {
         when (view.id) {
             R.id.btnGenerateOtp -> {
                 if(etPhoneNumber!!.text.length ==10) {
-                    val intent = Intent(this, MapActivity::class.java)
+                    val intent = Intent(this, BpMapActivity::class.java)
                     startActivity(intent)
                 }
             }

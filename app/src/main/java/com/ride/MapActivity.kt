@@ -1,40 +1,38 @@
 package com.ride
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
 import android.os.Handler
-import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
-import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.giantcell.utils.GpsUtils
 import com.giantcell.utils.Utils
-import com.google.android.gms.location.*
-import com.google.android.gms.location.LocationServices.*
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices.getFusedLocationProviderClient
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.ride.utils.Constant
-
 import java.io.IOException
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private var ivBack: ImageView? = null;
@@ -157,6 +155,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             val latLon: LatLng = marker.position
             var position = getMarkerIndex(marker.id)
 
+            val sydney = LatLng(-33.852, 151.211)
+            googleMap.addMarker(
+                MarkerOptions()
+                    .position(sydney)
+                    .title("Marker in Sydney")
+            )
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 //            val intent = Intent(this@MapActivity, HospitalDetailsActivity::class.java)
 //            intent.putExtra(Constant.POSITION, position)
 //
@@ -164,6 +169,25 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    // [END maps_marker_get_map_async]
+    // [END_EXCLUDE]
+    // [START_EXCLUDE silent]
+    // [START maps_marker_on_map_ready_add_marker]
+//    override fun onMapReady(googleMap: GoogleMap) {
+//        // [START_EXCLUDE silent]
+//        // Add a marker in Sydney, Australia,
+//        // and move the map's camera to the same location.
+//        // [END_EXCLUDE]
+//        val sydney = LatLng(-33.852, 151.211)
+//        googleMap.addMarker(
+//            MarkerOptions()
+//                .position(sydney)
+//                .title("Marker in Sydney")
+//        )
+//        // [START_EXCLUDE silent]
+//        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+//        // [END_EXCLUDE]
+//    }
     private fun getMarkerIndex(index: String): Int {
         var myIndex = -1
         try {
@@ -268,7 +292,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 //            })
 //        }
 //    }
-//
+
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        super.onActivityResult(requestCode, resultCode, data)
 //
