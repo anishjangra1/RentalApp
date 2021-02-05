@@ -11,4 +11,15 @@
     <color name="button_inactive">#55575c</color>
     <color name="grey">#707070</color>
     <color name="red">#ED3237</color>
+
+
+    <color name="bottom_background">#F5F5F5</color>
+    <color name="background_grey_color">#F5F5F5</color>
+    <color name="text_color">#58595B</color>
+    <color name="background_dark_grey_color">#8E8E93</color>
+    <color name="background_blue_color">#123A82</color>
+    <color name="background_light_blue_color">#3453A4</color>
+    <color name="dark_green_color">#0B726E</color>
+    <color name="light_green_color">#11A298</color>
+    <color name="fab_secondary_text_color">#AEBADA</color>
 </resources>
