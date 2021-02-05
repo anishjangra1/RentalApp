@@ -9,15 +9,13 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.ride.adaptor.RidePlanAdapter
-import com.ride.data.PlanResponse
 import com.ride.databinding.ActivityGetStartedBinding
+import com.ride.viewmodels.GenerateOtpViewModel
 import com.ride.viewmodels.GetPlanViewModel
 
 class GetPlansActivity : AppCompatActivity(){
-    var recyclerViewRidePlans: RecyclerView? = null
+    private var recyclerViewRidePlans: RecyclerView? = null
     var btnCountinueWithPhone: TextView? = null
     lateinit var binding: ActivityGetStartedBinding
     private lateinit var progressBar: ProgressBar
@@ -39,7 +37,7 @@ class GetPlansActivity : AppCompatActivity(){
 
     private fun initUi() {
         recyclerViewRidePlans = findViewById(R.id.recyclerViewRidePlans)
-//        setDataInView()
+//        binding.btnCountinueWithPhone.setOnClickListener(clickListener)
 
 //        getPlans()
     }
@@ -57,18 +55,6 @@ class GetPlansActivity : AppCompatActivity(){
                 viewModel.getPlans()
             }
 
-
-
-private fun setDataInView(planArrayList: ArrayList<PlanResponse>) {
-    recyclerViewRidePlans?.visibility = View.VISIBLE
-    recyclerViewRidePlans?.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-
-    val adapter = RidePlanAdapter(this, object : RidePlanAdapter.ItemListener {
-        override fun onTap(position: Int?) {
-
         }
-    }, planArrayList)
-    recyclerViewRidePlans?.adapter = adapter
-}
-}
+
 
