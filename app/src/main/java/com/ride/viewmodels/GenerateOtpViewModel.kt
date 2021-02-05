@@ -21,19 +21,47 @@ class GenerateOtpViewModel @Inject internal constructor(
     private var _notValidNumber = MutableLiveData<Boolean>()
     val notValidNumber = _notValidNumber
 
+    private var _showSnackBar = MutableLiveData<String>()
+    val showSnackBar = _showSnackBar
+
     var receivedOtp: String? = null
+    var userMobileNumber: String? = null
 
     fun generateOtp(mobileNumber: String){
         if(!Util.isValidMobileNumber(mobileNumber)){
             _notValidNumber.value = true
             return
         }
+        userMobileNumber = mobileNumber
 
         viewModelScope.launch(Dispatchers.IO) {
-            val response = repository.generateOtForLogin(mobileNumber)
+            val response = repository.generateOtForLogin(userMobileNumber!!)
             if(response.isSuccessful){
                 println("$TAG generateOtp() ->  ${response.body()}")
-                verifyOtp.postValue(response.body())
+                receivedOtp = response.body()
+                verifyOtp.postValue(receivedOtp)
+            }
+            else{
+                println("$TAG generateOtp() ->  response failed ${response.body()}")
+            }
+        }
+    }
+
+    fun validateOtp(otp: String){
+        if(otp.isNullOrBlank()) {
+            _showSnackBar.value = "Please enter otp"
+            return
+        }
+
+        if(otp != receivedOtp){
+            _showSnackBar.value = "Please enter valid otp"
+            return
+        }
+
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = repository.validateOtp(otp, userMobileNumber!!, 1)
+            if(response.isSuccessful){
+                println("$TAG generateOtp() ->  ${response.body()}")
             }
             else{
                 println("$TAG generateOtp() ->  response failed ${response.body()}")
