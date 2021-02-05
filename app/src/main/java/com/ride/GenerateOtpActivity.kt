@@ -57,8 +57,6 @@ class GenerateOtpActivity : AppCompatActivity() {
                 generateOtp()
 
             }
-
-
         }
     }
 
@@ -69,7 +67,8 @@ class GenerateOtpActivity : AppCompatActivity() {
                 viewModel.generateOtp(etPhoneNumber!!.text.toString())
             }
             LOGIN -> {
-
+                progressBar.visibility = View.VISIBLE
+                viewModel.validateOtp(btnGenerateOtp!!.text.toString())
             }
 
         }

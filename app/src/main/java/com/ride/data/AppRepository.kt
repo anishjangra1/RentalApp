@@ -22,7 +22,7 @@ class AppRepository @Inject constructor(private val service: RestApiService){
         return service.validateOtp(mobileNumber, otp, bpId)
     }
     suspend fun getRidePlans(): Response<String>{
-        return serviceRest.getPlan()
+        return service.getPlan()
     }
 
 }
