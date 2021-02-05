@@ -1,5 +1,6 @@
 package com.ride.retrofit
 
+import com.ride.data.ValidateOtpResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -25,8 +26,8 @@ interface RestApiService {
     suspend fun validateOtp(
         @Query("mobileNo") phoneNumber: String,
         @Query("otp") otp: String,
-        @Query("bpId") bpId: String
-    ): Response<String>
+        @Query("bpId") bpId: Int
+    ): Response<ValidateOtpResponse>
 
     @GET("vehicleType/get_nearby_vehicles")
     suspend fun sendOTP(
