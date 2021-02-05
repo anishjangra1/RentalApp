@@ -41,7 +41,7 @@ class GetPlansActivity : AppCompatActivity(){
         recyclerViewRidePlans = findViewById(R.id.recyclerViewRidePlans)
 //        binding.btnCountinueWithPhone.setOnClickListener(clickListener)
 
-//        getPlans()
+        getPlans()
     }
 
     private val clickListener = View.OnClickListener { view ->

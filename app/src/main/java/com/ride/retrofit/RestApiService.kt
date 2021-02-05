@@ -1,5 +1,6 @@
 package com.ride.retrofit
 
+import com.ride.data.PlanResponse
 import com.ride.data.ValidateOtpResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -37,7 +38,7 @@ interface RestApiService {
 
 
     @GET("rental_plan/all")
-    suspend fun getPlan(): Response<String>
+    suspend fun getPlan(): Response<List<PlanResponse>>
 
 
     companion object {

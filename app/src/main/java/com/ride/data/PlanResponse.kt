@@ -10,10 +10,7 @@ import com.google.gson.annotations.SerializedName
 }
  */
 data class PlanResponse (
-       var list: List<Plan>? = null
-)
 
-data class Plan(
         @SerializedName("id")
         var id: Int? = null,
 
