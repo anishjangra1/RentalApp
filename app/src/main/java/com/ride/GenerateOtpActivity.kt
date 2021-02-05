@@ -1,28 +1,34 @@
 package com.ride
-
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import com.giantcell.utils.Utils
+import com.ride.utility.AlertUtil
+import com.ride.viewmodels.GenerateOtpViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class GenerateOtpActivity : AppCompatActivity() {
-    private var etPhoneNumber: EditText? = null
-    private var btnGenerateOtp: TextView? = null
-    private var privacyLayout: LinearLayout? = null
-    private var main_container: CoordinatorLayout? = null
+    private lateinit var etEnterOtp: EditText
+    private lateinit var etPhoneNumber: EditText
+    private lateinit var btnGenerateOtp: TextView
+    private lateinit var privacyLayout: LinearLayout
+    private lateinit var mainContainer: CoordinatorLayout
+    private lateinit var progressBar: ProgressBar
+    private var generatedOtp: String? = null
+    private val viewModel: GenerateOtpViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.requestFeature(Window.FEATURE_NO_TITLE)
@@ -33,14 +39,17 @@ class GenerateOtpActivity : AppCompatActivity() {
         setContentView(R.layout.generate_otp_screen)
 
         initUI()
+        registerObserver()
     }
 
     private fun initUI() {
-        main_container = findViewById(R.id.main_container)
+        mainContainer = findViewById(R.id.main_container)
         etPhoneNumber = findViewById(R.id.etPhoneNumber)
+        etEnterOtp = findViewById(R.id.etEnterOtp)
         btnGenerateOtp = findViewById(R.id.btnGenerateOtp)
         privacyLayout = findViewById(R.id.privacyLayout)
         btnGenerateOtp!!.setOnClickListener(clickListener)
+        progressBar  = findViewById(R.id.loading_spinner)
         privacyLayout!!.setOnClickListener(clickListener)
 
 
@@ -51,7 +60,6 @@ class GenerateOtpActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
                 if(s?.length.toString().equals("10")){
-
                     btnGenerateOtp?.setBackgroundResource(R.drawable.button_rounded_active)
                     btnGenerateOtp!!.setTextColor(Color.parseColor("#000000"));
                 }else{
@@ -68,17 +76,44 @@ class GenerateOtpActivity : AppCompatActivity() {
     private val clickListener = View.OnClickListener { view ->
         when (view.id) {
             R.id.btnGenerateOtp -> {
-                if(etPhoneNumber!!.text.length ==10) {
-                    val intent = Intent(this, BpMapActivity::class.java)
-                    startActivity(intent)
+                if(btnGenerateOtp!!.text!! == GENERATE_OTP){
+                    if(etPhoneNumber!!.text.length ==10) {
+                        viewModel.generateOtp(etPhoneNumber!!.text.toString())
+                        progressBar!!.visibility  = View.VISIBLE
+                    }
                 }
+                else {
+                    if(etEnterOtp.text.equals(generatedOtp)) {
+                        navigateToHomePage()
+                    }
+                    else AlertUtil.showToastShort(this, "Otp doesn't match")
+                }
+
             }
 
             R.id.privacyLayout -> {
                     val intent = Intent(this, PrivacypolicyActivity::class.java)
                     startActivity(intent)
-
             }
         }
+    }
+
+    private fun navigateToHomePage(){
+
+    }
+
+    private fun registerObserver(){
+        viewModel.verifyOtp.observe(this){
+            progressBar!!.visibility = View.GONE
+            AlertUtil.showToastShort(this, "Please enter Otp")
+            etEnterOtp!!.visibility = View.VISIBLE
+            btnGenerateOtp!!.text = "Login"
+            generatedOtp = it
+        }
+    }
+
+    companion object {
+        const val  LOGIN = "login"
+        const val  GENERATE_OTP = "Generate Otp"
     }
 }

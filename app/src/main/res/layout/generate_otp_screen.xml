@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
     android:id="@+id/main_container"
     tools:context=".GetStartedActivity">
+
+    <ProgressBar android:id="@+id/loading_spinner"
+        style="?android:progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,18 +23,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_margin="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
+            android:animateLayoutChanges="true"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-
-                android:src="@drawable/logo" />
+                android:src="@drawable/logo"
+                android:contentDescription="TODO" />
 
             <TextView
                 style="@style/text_white_extra_llarge"
@@ -42,7 +50,6 @@
 
             <TextView
                 style="@style/text_white_large"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -58,7 +65,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-
                 android:backgroundTint="@color/white"
                 android:digits="0123456789"
                 android:hint="Enter Mobile Number"
@@ -72,9 +78,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-
                 android:backgroundTint="@color/white"
                 android:digits="0123456789"
+                android:visibility="invisible"
                 android:hint="Enter Otp"
                 android:inputType="number"
                 android:maxLength="4"
@@ -88,7 +94,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="right"
                 android:padding="10dp"
-                android:text="@string/resend_otp"></TextView>
+                android:text="@string/resend_otp"/>
 
 
             <TextView
@@ -120,7 +126,7 @@
             android:layout_marginBottom="20dp"
             android:gravity="center_horizontal"
             android:text="@string/privacy"
-            android:textColor="@color/grey"></TextView>
+            android:textColor="@color/grey"/>
 
         <TextView
             style="@style/text_grey_small"
@@ -129,7 +135,7 @@
             android:layout_marginBottom="20dp"
             android:gravity="center_horizontal"
             android:text="@string/policy"
-            android:textColor="@color/red"></TextView>
+            android:textColor="@color/red"/>
 
         <TextView
             style="@style/text_grey_small"
@@ -138,7 +144,7 @@
             android:layout_marginBottom="20dp"
             android:gravity="center_horizontal"
             android:text="@string/terms"
-            android:textColor="@color/grey"></TextView>
+            android:textColor="@color/grey"/>
 
         </LinearLayout>
     </LinearLayout>

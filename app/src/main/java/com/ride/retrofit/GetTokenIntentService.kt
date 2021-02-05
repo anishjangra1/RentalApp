@@ -5,11 +5,9 @@ import android.app.Service
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
-import android.text.TextUtils
 import android.util.Log
 
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import java.util.logging.Logger
 
 class GetTokenIntentService : IntentService("MyIntentService") {
@@ -18,7 +16,7 @@ class GetTokenIntentService : IntentService("MyIntentService") {
     private var disposable: Disposable? = null
 
     private val apiService by lazy {
-        ApiService.create()
+        RideApiService.create()
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
