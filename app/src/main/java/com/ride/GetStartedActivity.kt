@@ -5,19 +5,18 @@ import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.ride.databinding.ActivityGetStartedBinding
-import dagger.hilt.android.AndroidEntryPoint
+import com.ride.viewmodels.GenerateOtpViewModel
 
-@AndroidEntryPoint
 class GetStartedActivity : AppCompatActivity(){
 
     var btnCountinueWithPhone: TextView? = null
     lateinit var binding: ActivityGetStartedBinding
 
+    private val  viewModel: GenerateOtpViewModel  by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +25,7 @@ class GetStartedActivity : AppCompatActivity(){
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
+
         binding = ActivityGetStartedBinding.inflate(layoutInflater).also {
             this@GetStartedActivity.setContentView(it.root)
         }

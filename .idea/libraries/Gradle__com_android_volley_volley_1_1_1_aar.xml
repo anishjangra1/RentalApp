@@ -1,7 +1,6 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.volley:volley:1.1.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/016a2bc1bc64490bba7bdd7ee1404cf0/jetified-volley-1.1.1/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6914110829537347edb6c96650915ccf/jetified-volley-1.1.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6914110829537347edb6c96650915ccf/jetified-volley-1.1.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6914110829537347edb6c96650915ccf/jetified-volley-1.1.1/AndroidManifest.xml" />

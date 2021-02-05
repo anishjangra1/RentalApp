@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.text.TextUtils
 
-import com.ride.retrofit.response.ProfileData
 import com.google.gson.Gson
 
 

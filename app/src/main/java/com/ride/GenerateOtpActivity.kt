@@ -26,7 +26,7 @@ class GenerateOtpActivity : AppCompatActivity() {
     private lateinit var privacyLayout: LinearLayout
     private lateinit var mainContainer: CoordinatorLayout
     private lateinit var progressBar: ProgressBar
-    private var generatedOtp: String? = null
+
     private val viewModel: GenerateOtpViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,8 +36,8 @@ class GenerateOtpActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-        setContentView(R.layout.generate_otp_screen)
 
+        setContentView(R.layout.generate_otp_screen)
         initUI()
         registerObserver()
     }
@@ -76,17 +76,15 @@ class GenerateOtpActivity : AppCompatActivity() {
     private val clickListener = View.OnClickListener { view ->
         when (view.id) {
             R.id.btnGenerateOtp -> {
-                if(btnGenerateOtp!!.text!! == GENERATE_OTP){
-                    if(etPhoneNumber!!.text.length ==10) {
+                when(btnGenerateOtp!!.text){
+                    GENERATE_OTP -> {
+                        progressBar.visibility = View.VISIBLE
                         viewModel.generateOtp(etPhoneNumber!!.text.toString())
-                        progressBar!!.visibility  = View.VISIBLE
                     }
-                }
-                else {
-                    if(etEnterOtp.text.equals(generatedOtp)) {
-                        navigateToHomePage()
+                    LOGIN -> {
+
                     }
-                    else AlertUtil.showToastShort(this, "Otp doesn't match")
+
                 }
 
             }
@@ -108,7 +106,11 @@ class GenerateOtpActivity : AppCompatActivity() {
             AlertUtil.showToastShort(this, "Please enter Otp")
             etEnterOtp!!.visibility = View.VISIBLE
             btnGenerateOtp!!.text = "Login"
-            generatedOtp = it
+        }
+
+        viewModel.notValidNumber.observe(this){
+            progressBar.visibility = View.GONE
+            AlertUtil.showToastShort(this, "Please enter valid mobile number")
         }
     }
 
