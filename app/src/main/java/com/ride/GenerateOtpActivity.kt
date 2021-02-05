@@ -76,19 +76,13 @@ class GenerateOtpActivity : AppCompatActivity() {
     private val clickListener = View.OnClickListener { view ->
         when (view.id) {
             R.id.btnGenerateOtp -> {
-                when(btnGenerateOtp!!.text){
-                    GENERATE_OTP -> {
-                        progressBar.visibility = View.VISIBLE
-                        viewModel.generateOtp(etPhoneNumber!!.text.toString())
-                    }
-                    LOGIN -> {
-
-                    }
-
-                }
+                generateOtp()
 
             }
 
+            R.id.tvResendOtp -> {
+                generateOtp()
+            }
             R.id.privacyLayout -> {
                     val intent = Intent(this, PrivacypolicyActivity::class.java)
                     startActivity(intent)
@@ -96,6 +90,18 @@ class GenerateOtpActivity : AppCompatActivity() {
         }
     }
 
+    private fun generateOtp(){
+        when(btnGenerateOtp!!.text){
+            GENERATE_OTP -> {
+                progressBar.visibility = View.VISIBLE
+                viewModel.generateOtp(etPhoneNumber!!.text.toString())
+            }
+            LOGIN -> {
+
+            }
+
+        }
+    }
     private fun navigateToHomePage(){
 
     }
