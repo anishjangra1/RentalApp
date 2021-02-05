@@ -9,7 +9,10 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ride.adaptor.RidePlanAdapter
+import com.ride.data.PlanResponse
 import com.ride.databinding.ActivityGetStartedBinding
 import com.ride.viewmodels.GenerateOtpViewModel
 import com.ride.viewmodels.GetPlanViewModel
@@ -56,6 +59,20 @@ class GetPlansActivity : AppCompatActivity(){
 //                progressBar.visibility = View.VISIBLE
                 viewModel.getPlans()
     }
+
+
+    private fun setDataInView(categoryArrayList: ArrayList<PlanResponse>) {
+        recyclerViewRidePlans?.visibility = View.VISIBLE
+        recyclerViewRidePlans?.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+
+        val adapter = RidePlanAdapter(this, object : RidePlanAdapter.ItemListener {
+            override fun onTap(position: Int?) {
+
+            }
+        }, categoryArrayList)
+        recyclerViewRidePlans?.adapter = adapter
+    }
+
 
 }
 
