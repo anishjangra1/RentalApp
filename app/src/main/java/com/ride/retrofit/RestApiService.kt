@@ -36,6 +36,10 @@ interface RestApiService {
     ): Response<String>
 
 
+    @GET("rental_plan/all")
+    suspend fun getPlan(): Response<String>
+
+
     companion object {
 
         private const val BASE_URL = "http://13.235.248.128:8080/"

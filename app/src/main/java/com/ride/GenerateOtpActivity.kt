@@ -23,6 +23,7 @@ class GenerateOtpActivity : AppCompatActivity() {
     private lateinit var etEnterOtp: EditText
     private lateinit var etPhoneNumber: EditText
     private lateinit var btnGenerateOtp: TextView
+    private lateinit var tvResendOtp: TextView
     private lateinit var privacyLayout: LinearLayout
     private lateinit var mainContainer: CoordinatorLayout
     private lateinit var progressBar: ProgressBar
@@ -44,58 +45,35 @@ class GenerateOtpActivity : AppCompatActivity() {
 
     private fun initUI() {
         mainContainer = findViewById(R.id.main_container)
-        etPhoneNumber = findViewById(R.id.etPhoneNumber)
-        etEnterOtp = findViewById(R.id.etEnterOtp)
-        btnGenerateOtp = findViewById(R.id.btnGenerateOtp)
-        privacyLayout = findViewById(R.id.privacyLayout)
-        btnGenerateOtp!!.setOnClickListener(clickListener)
-        progressBar  = findViewById(R.id.loading_spinner)
-        privacyLayout!!.setOnClickListener(clickListener)
 
 
-        etPhoneNumber!!.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                if(s?.length.toString().equals("10")){
-                    btnGenerateOtp?.setBackgroundResource(R.drawable.button_rounded_active)
-                    btnGenerateOtp!!.setTextColor(Color.parseColor("#000000"));
-                }else{
-                    btnGenerateOtp?.setBackgroundResource(R.drawable.button_rounded_inactive)
-                    btnGenerateOtp!!.setTextColor(Color.parseColor("#ffffff"));
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-        })
     }
 
 
     private val clickListener = View.OnClickListener { view ->
         when (view.id) {
             R.id.btnGenerateOtp -> {
-                when(btnGenerateOtp!!.text){
-                    GENERATE_OTP -> {
-                        progressBar.visibility = View.VISIBLE
-                        viewModel.generateOtp(etPhoneNumber!!.text.toString())
-                    }
-                    LOGIN -> {
-
-                    }
-
-                }
+                generateOtp()
 
             }
 
-            R.id.privacyLayout -> {
-                    val intent = Intent(this, PrivacypolicyActivity::class.java)
-                    startActivity(intent)
-            }
+
         }
     }
 
+    private fun generateOtp(){
+        when(btnGenerateOtp!!.text){
+            GENERATE_OTP -> {
+                progressBar.visibility = View.VISIBLE
+                viewModel.generateOtp(etPhoneNumber!!.text.toString())
+            }
+            LOGIN -> {
+
+            }
+
+        }
+    }
     private fun navigateToHomePage(){
 
     }
