@@ -70,7 +70,6 @@ class GenerateOtpActivity : AppCompatActivity() {
                 progressBar.visibility = View.VISIBLE
                 viewModel.validateOtp(btnGenerateOtp!!.text.toString())
             }
-
         }
     }
     private fun navigateToHomePage(){
@@ -88,6 +87,11 @@ class GenerateOtpActivity : AppCompatActivity() {
         viewModel.notValidNumber.observe(this){
             progressBar.visibility = View.GONE
             AlertUtil.showToastShort(this, "Please enter valid mobile number")
+        }
+
+        viewModel.showSnackBar.observe(this){
+            progressBar.visibility = View.VISIBLE
+            AlertUtil.showToastShort(this, it)
         }
     }
 

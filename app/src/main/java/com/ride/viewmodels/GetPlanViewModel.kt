@@ -1,10 +1,8 @@
 package com.ride.viewmodels
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ride.data.AppRepository
-import com.ride.utility.Util
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,14 +12,6 @@ import javax.inject.Inject
 class GetPlanViewModel @Inject internal constructor(
     private val repository: AppRepository
     ) : ViewModel() {
-
-//    private var _updateOtp = MutableLiveData<String>()
-//    val verifyOtp = _updateOtp
-//
-//    private var _notValidNumber = MutableLiveData<Boolean>()
-//    val notValidNumber = _notValidNumber
-//
-//    var receivedOtp: String? = null
 
     fun getPlans(){
 

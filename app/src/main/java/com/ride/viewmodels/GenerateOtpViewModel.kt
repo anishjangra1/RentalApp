@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ride.data.AppRepository
+import com.ride.data.ValidateOtpResponse
 import com.ride.utility.Util
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -24,8 +25,13 @@ class GenerateOtpViewModel @Inject internal constructor(
     private var _showSnackBar = MutableLiveData<String>()
     val showSnackBar = _showSnackBar
 
-    var receivedOtp: String? = null
-    var userMobileNumber: String? = null
+    private var _navigateToHome = MutableLiveData<ValidateOtpResponse>()
+    val navigateToHome = _navigateToHome
+
+
+    private var receivedOtp: String? = null
+    private var userMobileNumber: String? = null
+
 
     fun generateOtp(mobileNumber: String){
         if(!Util.isValidMobileNumber(mobileNumber)){
@@ -61,7 +67,12 @@ class GenerateOtpViewModel @Inject internal constructor(
         viewModelScope.launch(Dispatchers.IO) {
             val response = repository.validateOtp(otp, userMobileNumber!!, 1)
             if(response.isSuccessful){
-                println("$TAG generateOtp() ->  ${response.body()}")
+                if(response.body()!!.status == 1){
+                    _navigateToHome.postValue(response.body())
+                }
+                else {
+                    // TODO: 06/02/21  handle error
+                }
             }
             else{
                 println("$TAG generateOtp() ->  response failed ${response.body()}")

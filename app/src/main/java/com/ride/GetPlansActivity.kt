@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ride.databinding.ActivityGetStartedBinding
 import com.ride.viewmodels.GenerateOtpViewModel
 import com.ride.viewmodels.GetPlanViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class GetPlansActivity : AppCompatActivity(){
     private var recyclerViewRidePlans: RecyclerView? = null
     var btnCountinueWithPhone: TextView? = null
@@ -53,8 +55,8 @@ class GetPlansActivity : AppCompatActivity(){
     private fun getPlans(){
 //                progressBar.visibility = View.VISIBLE
                 viewModel.getPlans()
-            }
+    }
 
-        }
+}
 
 
