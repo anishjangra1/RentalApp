@@ -13,5 +13,8 @@ class AppRepository @Inject constructor(private val serviceRest: RestApiService)
     suspend fun generateOtForLogin(mobileNumber: String): Response<String>{
         return serviceRest.generateOtpForLogin(mobileNumber)
     }
+    suspend fun getRidePlans(): Response<String>{
+        return serviceRest.getPlan()
+    }
 
 }
