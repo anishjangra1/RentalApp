@@ -6,10 +6,16 @@
     android:layout_height="match_parent"
     android:background="#F0F2F2"
     tools:context=".GetPlansActivity">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewRidePlans"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

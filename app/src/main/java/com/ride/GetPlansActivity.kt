@@ -23,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class GetPlansActivity : AppCompatActivity(){
     private var recyclerViewRidePlans: RecyclerView? = null
     var btnCountinueWithPhone: TextView? = null
-    lateinit var binding: ActivityGetStartedBinding
+
     private lateinit var progressBar: ProgressBar
     private val  viewModel: GetPlanViewModel  by viewModels()
 
