@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.lifecycle.observe
 import com.ride.utility.AlertUtil
 import com.ride.viewmodels.GenerateOtpViewModel
 import com.ride.views.MapsActivity
