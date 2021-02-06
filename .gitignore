@@ -8,3 +8,12 @@
 /captures
 .externalNativeBuild
 ktlint
+*.properties
+*.iml
+*.xml
+*.xml
+*.xml
+*.ser
+*.lock
+local.properties
+*.bin
