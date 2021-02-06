@@ -86,10 +86,10 @@ class GetPlansActivity : AppCompatActivity(){
 
 
     private fun registerObserver(){
-        viewModel.planResponseList.observe(this,{planResponseList ->
+        viewModel.planResponseList.observe(this) { planResponseList ->
             setDataInView(planResponseList)
 
-        })
+        }
 //        viewModel.planResponseList().observe(this, { fruitlist ->
 //            // update UI
 //            val adapter: ArrayAdapter<String> = ArrayAdapter<Any?>(

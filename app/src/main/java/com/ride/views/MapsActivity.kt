@@ -1,18 +1,21 @@
 package com.ride.views
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.ride.BPFragment
+import com.ride.GetPlansActivity
 import com.ride.R
 import com.ride.databinding.ActivityMaps2Binding
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemClickListener {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMaps2Binding
@@ -40,10 +43,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(-34.0, 151.0)
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        mMap.setOnMarkerClickListener(OnMarkerClickListener { Marker ->
+//            val position = marker.tag as Int
+            supportFragmentManager.let {
+                BPFragment.newInstance(Bundle()).apply {
+                    show(it, tag)
+                }
+            }
+            false
+        })
+    }
+
+    override fun onItemClick(item: String) {
+        startActivity(Intent(this, GetPlansActivity::class.java))
     }
 }
