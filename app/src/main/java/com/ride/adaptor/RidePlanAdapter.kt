@@ -1,27 +1,20 @@
 package com.ride.adaptor
 
 import android.content.Context
-import android.graphics.PorterDuff
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.ride.R
 import com.ride.data.PlanResponse
 
 import java.util.*
-import kotlin.collections.ArrayList
 
 class RidePlanAdapter(
     private var context: Context,
     private var itemListener: ItemListener,
-    private val planResponseList: ArrayList<PlanResponse>
+    private val planResponseList: List<PlanResponse>
 ) : RecyclerView.Adapter<RidePlanAdapter.ViewHolder>() {
     lateinit var mContext: Context
     private val mRandom = Random()
@@ -38,9 +31,9 @@ class RidePlanAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val categoryData: PlanResponse = planResponseList[position]
-        holder.name.text = categoryData.plan
-        holder.duration.text = categoryData.duration.toString()
-        holder.price.text = categoryData.rate.toString()
+        holder.name.text = "Plan :"+categoryData.plan
+        holder.duration.text = "Duration :"+categoryData.duration.toString()
+        holder.price.text = "Price :Rs."+categoryData.rate.toString()
 
     }
 

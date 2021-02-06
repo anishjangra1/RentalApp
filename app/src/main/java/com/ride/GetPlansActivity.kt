@@ -9,14 +9,15 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ride.adaptor.RidePlanAdapter
 import com.ride.data.PlanResponse
 import com.ride.databinding.ActivityGetStartedBinding
-import com.ride.viewmodels.GenerateOtpViewModel
 import com.ride.viewmodels.GetPlanViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class GetPlansActivity : AppCompatActivity(){
@@ -38,6 +39,7 @@ class GetPlansActivity : AppCompatActivity(){
         setContentView(R.layout.activity_ride_plans)
 
         initUi()
+        registerObserver()
     }
 
     private fun initUi() {
@@ -45,6 +47,15 @@ class GetPlansActivity : AppCompatActivity(){
 //        binding.btnCountinueWithPhone.setOnClickListener(clickListener)
 
         getPlans()
+    }
+
+    override fun startSearch(
+        initialQuery: String?,
+        selectInitialQuery: Boolean,
+        appSearchData: Bundle?,
+        globalSearch: Boolean
+    ) {
+        super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch)
     }
 
     private val clickListener = View.OnClickListener { view ->
@@ -61,7 +72,7 @@ class GetPlansActivity : AppCompatActivity(){
     }
 
 
-    private fun setDataInView(categoryArrayList: ArrayList<PlanResponse>) {
+    private fun setDataInView(planResponseList: List<PlanResponse>) {
         recyclerViewRidePlans?.visibility = View.VISIBLE
         recyclerViewRidePlans?.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
@@ -69,11 +80,28 @@ class GetPlansActivity : AppCompatActivity(){
             override fun onTap(position: Int?) {
 
             }
-        }, categoryArrayList)
+        }, planResponseList)
         recyclerViewRidePlans?.adapter = adapter
     }
 
 
+    private fun registerObserver(){
+        viewModel.planResponseList.observe(this,{planResponseList ->
+            setDataInView(planResponseList)
+
+        })
+//        viewModel.planResponseList().observe(this, { fruitlist ->
+//            // update UI
+//            val adapter: ArrayAdapter<String> = ArrayAdapter<Any?>(
+//                this,
+//                android.R.layout.simple_list_item_1, android.R.id.text1, fruitlist
+//            )
+//            // Assign adapter to ListView
+//            listView.setAdapter(adapter)
+//            progressBar.visibility = View.GONE
+//        })
+
+    }
 }
 
 

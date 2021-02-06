@@ -15,7 +15,7 @@ import javax.inject.Inject
 class GetPlanViewModel @Inject internal constructor(
     private val repository: AppRepository
     ) : ViewModel() {
-    private var _planResponseList = MutableLiveData<List<PlanResponse>>()
+     var _planResponseList = MutableLiveData<List<PlanResponse>>()
     var planResponseList = _planResponseList
     fun getPlans(){
 
