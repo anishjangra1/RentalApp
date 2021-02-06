@@ -41,7 +41,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".views.MapsActivity"
+            android:name=".GetStartedActivity"
             android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,7 +58,7 @@
         </activity>
 
         <activity
-            android:name=".GetStartedActivity"
+            android:name=".views.MapsActivity"
             android:screenOrientation="fullSensor">
             android:screenOrientation="portrait">
         </activity>

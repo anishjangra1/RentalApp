@@ -17,7 +17,7 @@ import com.ride.utility.Util
 class ShowLocationBottomSheet : BottomSheetDialogFragment() {
 
     private lateinit var mapAdapter: MapListAdapter
-    private var data: String?
+    private var data: String?="Dialog Fragment"
 
     private lateinit var binding: BottomSheetShowLocationsBinding
 

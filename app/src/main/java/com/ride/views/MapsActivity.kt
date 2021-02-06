@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.observe
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
@@ -41,7 +42,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemCli
 
         viewModel.availableVehicles.observe(this){
             val data = Gson().toJson(it)
-            ShowLocationBottomSheet.newInstance(data).show(supportFragmentManager, "Dialog Fragment")
+//            ShowLocationBottomSheet.newInstance(data).show(supportFragmentManager, "Dialog Fragment")
             showMarkers(it)
         }
 
@@ -54,10 +55,30 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemCli
             for (element in list) {
                 addMarker(element)
             }
+            val item : Vehicle
+            item=list.get(0)
+
+            val location = LatLng(item.latitude!!.toDouble(), item.longitude!!.toDouble())
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(location))
+            mMap.animateCamera(CameraUpdateFactory.zoomIn());
+            // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(13F), 2000, null);
+            mMap.setOnMarkerClickListener(OnMarkerClickListener { Marker ->
+//            val position = marker.tag as Int
+                supportFragmentManager.let {
+                    BPFragment.newInstance(Bundle()).apply {
+                        show(it, tag)
+                    }
+                }
+                false
+            })
         }
     }
 
     private fun addMarker(item: Vehicle) {
+
+        val location = LatLng(item.latitude!!.toDouble(), item.longitude!!.toDouble())
+        mMap.addMarker(MarkerOptions().position(location).title(item.name))
 
     }
 
@@ -73,18 +94,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemCli
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-        mMap.setOnMarkerClickListener(OnMarkerClickListener { Marker ->
-//            val position = marker.tag as Int
-            supportFragmentManager.let {
-                BPFragment.newInstance(Bundle()).apply {
-                    show(it, tag)
-                }
-            }
-            false
-        })
+//        val sydney = LatLng(-34.0, 151.0)
+//        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+//        mMap.setOnMarkerClickListener(OnMarkerClickListener { Marker ->
+////            val position = marker.tag as Int
+//            supportFragmentManager.let {
+//                BPFragment.newInstance(Bundle()).apply {
+//                    show(it, tag)
+//                }
+//            }
+//            false
+//        })
     }
 
     override fun onItemClick(item: String) {
