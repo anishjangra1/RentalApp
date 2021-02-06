@@ -1,4 +1,4 @@
-package com.giantcell.utils
+package com.ride.utils
 
 import android.app.Activity
 import android.content.ContentValues
@@ -10,7 +10,6 @@ import android.widget.Toast
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
-import com.ride.utils.Constant
 
 
 class GpsUtils(private val context: Context) {

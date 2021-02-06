@@ -23,7 +23,6 @@ data class Plan(
         @SerializedName("rate")
         var rate: Float? = null,
 
-
         @SerializedName("duration")
         var duration: Int? = null,
 

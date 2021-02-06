@@ -60,12 +60,12 @@ class GenerateOtpViewModel @Inject internal constructor(
         }
 
         if(otp != receivedOtp){
-            _showSnackBar.value = "Please enter valid otp"
+            _showSnackBar.value = "Please enter a valid otp"
             return
         }
 
         viewModelScope.launch(Dispatchers.IO) {
-            val response = repository.validateOtp(otp, userMobileNumber!!, 1)
+            val response = repository.validateOtp(userMobileNumber!!, otp, 1)
             if(response.isSuccessful){
                 if(response.body()!!.status == 1){
                     _navigateToHome.postValue(response.body())

@@ -1,5 +1,6 @@
 package com.ride.retrofit
 
+import com.ride.data.Plan
 import com.ride.data.ValidateOtpResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,7 +23,7 @@ interface RestApiService {
         @Query("mobileNo") phoneNumber: String
     ): Response<String>
 
-    @POST("customers/generate_login_otp")
+    @POST("customers/login")
     suspend fun validateOtp(
         @Query("mobileNo") phoneNumber: String,
         @Query("otp") otp: String,
@@ -37,7 +38,7 @@ interface RestApiService {
 
 
     @GET("rental_plan/all")
-    suspend fun getPlan(): Response<String>
+    suspend fun getPlan(): Response<List<Plan>>
 
 
     companion object {
