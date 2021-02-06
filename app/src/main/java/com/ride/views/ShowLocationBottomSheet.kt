@@ -22,8 +22,10 @@ class ShowLocationBottomSheet : BottomSheetDialogFragment() {
     private lateinit var binding: BottomSheetShowLocationsBinding
 
 
-    init {
-         data = requireArguments().getString(KEY_DATA)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        data = requireArguments().getString(KEY_DATA)
+        println("onCreate() -> $data")
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,12 +53,10 @@ class ShowLocationBottomSheet : BottomSheetDialogFragment() {
         const val KEY_DATA = "data"
 
         @JvmStatic
-        fun newInstance(data: String): ShowLocationBottomSheet {
-            val showLocationBottomSheet = ShowLocationBottomSheet()
-            showLocationBottomSheet.arguments?.apply {
-                putString(KEY_DATA, data)
-            }
-            return showLocationBottomSheet
+        fun newInstance(data: String): ShowLocationBottomSheet = ShowLocationBottomSheet().apply {
+                arguments = Bundle().apply {
+                    putString(KEY_DATA, data)
+                }
         }
     }
 }

@@ -42,7 +42,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemCli
 
         viewModel.availableVehicles.observe(this){
             val data = Gson().toJson(it)
-//            ShowLocationBottomSheet.newInstance(data).show(supportFragmentManager, "Dialog Fragment")
+            ShowLocationBottomSheet.newInstance(data).show(supportFragmentManager, "Dialog Fragment")
 
             showMarkers(it)
         }
