@@ -31,18 +31,18 @@ class RidePlanAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val categoryData: PlanResponse = planResponseList[position]
-//        holder.name.text = "Plan :"+categoryData.plan
-//        holder.duration.text = "Duration :"+categoryData.duration.toString()
-//        holder.price.text = "Price :Rs."+categoryData.rate.toString()
+        holder.name.text = "Plan :"+categoryData.plan
+        holder.duration.text = "Duration :"+categoryData.duration.toString()
+        holder.price.text = "Price :Rs."+categoryData.rate.toString()
 
     }
 
     override fun getItemCount(): Int = planResponseList.size
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        val name: TextView = itemView.findViewById(R.id.name)
-//        val price: TextView = itemView.findViewById(R.id.price)
-//        val duration: TextView = itemView.findViewById(R.id.duration)
+        val name: TextView = itemView.findViewById(R.id.name)
+        val price: TextView = itemView.findViewById(R.id.price)
+        val duration: TextView = itemView.findViewById(R.id.duration)
     }
 
     interface ItemListener {

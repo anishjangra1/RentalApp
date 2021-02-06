@@ -120,6 +120,7 @@ class GenerateOtpActivity : AppCompatActivity() {
         // Navigate to home screen
         viewModel.navigateToHome.observe(this){
             startActivity(Intent(this, MapsActivity::class.java))
+            finish()
         }
     }
 

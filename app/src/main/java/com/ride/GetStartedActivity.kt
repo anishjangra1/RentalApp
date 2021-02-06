@@ -42,6 +42,7 @@ class GetStartedActivity : AppCompatActivity(){
             R.id.btnCountinueWithPhone -> {
                 val intent = Intent(this, GenerateOtpActivity::class.java)
                 startActivity(intent)
+                finish()
             }
         }
     }

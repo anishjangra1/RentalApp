@@ -43,6 +43,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemCli
         viewModel.availableVehicles.observe(this){
             val data = Gson().toJson(it)
 //            ShowLocationBottomSheet.newInstance(data).show(supportFragmentManager, "Dialog Fragment")
+
             showMarkers(it)
         }
 
@@ -110,5 +111,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemCli
 
     override fun onItemClick(item: String) {
         startActivity(Intent(this, GetPlansActivity::class.java))
+        finish()
     }
 }
