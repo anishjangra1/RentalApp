@@ -21,6 +21,11 @@ class AppRepository @Inject constructor(private val service: RestApiService){
     ): Response<ValidateOtpResponse>{
         return service.validateOtp(mobileNumber, otp, bpId)
     }
+
+    suspend fun getNearbyVehicles(latitude: Float, longitude: Float): Response<List<Vehicle>>{
+        return service.getNearbyVehicles(latitude, longitude)
+    }
+
     suspend fun getRidePlans(): Response<List<PlanResponse>>{
         return service.getPlan()
     }

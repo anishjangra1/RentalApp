@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vehicle"
+            type="com.ride.data.Vehicle" />
+        <variable
+            name="clickListener"
+            type="com.ride.adaptor.VehicleItemListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:onClick="@{(view)-> clickListener.onClick(vehicle, view)}"
+        android:layout_height="80dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:srcCompat="@drawable/ic_bike_icon"
+            android:layout_margin="@dimen/_medium"
+            android:padding="@dimen/_small" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/navigation"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="15dp"
+            android:textSize="@dimen/size_medium"
+            android:textColor="@color/black"
+            android:layout_marginStart="@dimen/_medium"
+            android:text="@{vehicle.name}"
+            tools:text="Send Location"/>
+
+        <TextView
+            android:id="@+id/subTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/navigation"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            android:textSize="@dimen/size_small"
+            android:textColor="@color/grey"
+            android:layout_marginStart="@dimen/_medium"
+            android:text="@{vehicle.vehicleNo}"
+            tools:text="Sector 54 Gurgaon"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

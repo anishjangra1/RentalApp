@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ride">
 
     <!--
@@ -41,28 +42,25 @@
 
         <activity
             android:name=".views.MapsActivity"
-            android:label="@string/title_activity_maps"/>
-
-        <activity
-            android:name=".GenerateOtpActivity"
-            android:screenOrientation="fullSensor">
-
-        </activity>
-        <activity
-            android:name=".GetPlansActivity"
-            android:screenOrientation="fullSensor">
-
-        </activity>
-
-        <activity
-            android:name=".GetStartedActivity"
-            android:screenOrientation="fullSensor">
-
+            android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".GenerateOtpActivity"
+            android:screenOrientation="fullSensor">
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".GetStartedActivity"
+            android:screenOrientation="fullSensor">
+            android:screenOrientation="portrait">
         </activity>
 
 
@@ -74,9 +72,9 @@
             android:screenOrientation="fullSensor">
         </activity>
 
-        <meta-data
+        <!--<meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+            android:value="@integer/google_play_services_version" />-->
     </application>
 
 </manifest>

@@ -3,7 +3,7 @@
     <dimen name="_medium">10dp</dimen>
     <dimen name="_small">8dp</dimen>
 
-    <dimen name="size_small">8sp</dimen>
-    <dimen name="size_medium">12sp</dimen>
+    <dimen name="size_small">12sp</dimen>
+    <dimen name="size_medium">16sp</dimen>
 
 </resources>

@@ -2,6 +2,7 @@ package com.ride.retrofit
 
 import com.ride.data.PlanResponse
 import com.ride.data.ValidateOtpResponse
+import com.ride.data.Vehicle
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -30,11 +31,12 @@ interface RestApiService {
         @Query("bpId") bpId: Int
     ): Response<ValidateOtpResponse>
 
+
     @GET("vehicleType/get_nearby_vehicles")
-    suspend fun sendOTP(
-        @Path("latitude") latitude: String,
-        @Path("longitude") longitude:String
-    ): Response<String>
+    suspend fun getNearbyVehicles(
+        @Query("latitude") latitude: Float,
+        @Query("longitude") longitude: Float
+    ): Response<List<Vehicle>>
 
 
     @GET("rental_plan/all")

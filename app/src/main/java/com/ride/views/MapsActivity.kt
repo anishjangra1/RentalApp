@@ -2,6 +2,7 @@ package com.ride.views
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -10,15 +11,22 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.gson.Gson
 import com.ride.BPFragment
 import com.ride.GetPlansActivity
 import com.ride.R
+import com.ride.data.Vehicle
 import com.ride.databinding.ActivityMaps2Binding
+import com.ride.viewmodels.MapViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemClickListener {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMaps2Binding
+
+    val viewModel: MapViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +38,27 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemCli
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        viewModel.availableVehicles.observe(this){
+            val data = Gson().toJson(it)
+            ShowLocationBottomSheet.newInstance(data).show(supportFragmentManager, "Dialog Fragment")
+            showMarkers(it)
+        }
+
+        viewModel.getNearbyVehicles()
+    }
+
+    private fun showMarkers( list: List<Vehicle>?) {
+
+        if (list != null) {
+            for (element in list) {
+                addMarker(element)
+            }
+        }
+    }
+
+    private fun addMarker(item: Vehicle) {
+
     }
 
     /**
