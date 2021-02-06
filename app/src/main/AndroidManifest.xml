@@ -46,13 +46,18 @@
         <activity
             android:name=".GenerateOtpActivity"
             android:screenOrientation="fullSensor">
-            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".GetPlansActivity"
+            android:screenOrientation="fullSensor">
+
         </activity>
 
         <activity
             android:name=".GetStartedActivity"
             android:screenOrientation="fullSensor">
-            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

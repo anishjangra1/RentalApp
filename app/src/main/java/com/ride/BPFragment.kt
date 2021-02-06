@@ -21,7 +21,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [SubscribeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SubscribeFragment : BottomSheetDialogFragment() {
+class BPFragment : BottomSheetDialogFragment() {
     private var btBookNow: Button? = null
 
     override fun onCreateView(
@@ -34,6 +34,7 @@ class SubscribeFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btBookNow = view.findViewById(R.id.bookNow)
+
         setUpViews()
     }
 
@@ -75,8 +76,8 @@ class SubscribeFragment : BottomSheetDialogFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(bundle: Bundle): SubscribeFragment {
-            val fragment = SubscribeFragment()
+        fun newInstance(bundle: Bundle): BPFragment {
+            val fragment = BPFragment()
             fragment.arguments = bundle
             return fragment
         }
