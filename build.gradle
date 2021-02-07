@@ -37,10 +37,11 @@ buildscript {
         ktxVersion = '1.0.2'
         lifecycleVersion = '2.2.0'
         materialVersion = '1.2.0'
-        navigationVersion = '2.2.0'
+        navigationVersion = '2.3.3'
         okhttpLoggingVersion = '4.7.2'
         recyclerViewVersion = '1.2.0-alpha04'
         retrofitVersion = '2.9.0'
+
     }
 
     repositories {

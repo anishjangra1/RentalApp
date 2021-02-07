@@ -1,18 +1,20 @@
 package com.ride.views
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
-import com.ride.BPFragment
+import com.google.gson.reflect.TypeToken
 import com.ride.adaptor.MapListAdapter
 import com.ride.adaptor.VehicleItemListener
 import com.ride.data.Vehicle
 import com.ride.databinding.BottomSheetShowLocationsBinding
-import com.ride.retrofit.Utility
-import com.ride.utility.Util
+import java.lang.reflect.Type
+
 
 class ShowLocationBottomSheet : BottomSheetDialogFragment() {
 
@@ -41,12 +43,35 @@ class ShowLocationBottomSheet : BottomSheetDialogFragment() {
         })
 
         binding.rvLocations.adapter = mapAdapter
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         if(!data.isNullOrBlank()){
-            val list = Gson().fromJson<List<Vehicle>>(data, List::class.java)
+            val listOfMyClassObject: Type = object : TypeToken<ArrayList<Vehicle>>() {}.type
+            val list: List<Vehicle> = Gson().fromJson(data, listOfMyClassObject)
             mapAdapter.submitData(list)
         }
-        return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+//        (view?.parent as View).setBackgroundColor(Color.TRANSPARENT)
+        val resources = resources
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            assert(view != null)
+            val parent = view?.parent as View
+            val layoutParams = parent.layoutParams as CoordinatorLayout.LayoutParams
+            layoutParams.setMargins(
+                0, // LEFT 16dp
+                0,
+                0,
+                0,
+            )
+            parent.layoutParams = layoutParams
+        }
+
     }
 
     companion object {

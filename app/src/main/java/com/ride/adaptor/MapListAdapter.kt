@@ -38,7 +38,7 @@ class MapListAdapter (private val listener: VehicleItemListener) : RecyclerView.
         return if(data == null) 0 else data!!.size
     }
 
-    public fun submitData(list: List<Vehicle>){
+    fun submitData(list: List<Vehicle>){
         data = list
         notifyDataSetChanged()
     }

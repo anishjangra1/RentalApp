@@ -42,8 +42,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemCli
 
         viewModel.availableVehicles.observe(this){
             val data = Gson().toJson(it)
-            ShowLocationBottomSheet.newInstance(data).show(supportFragmentManager, "Dialog Fragment")
-
+            ShowLocationBottomSheet.newInstance(data).apply {
+                show(supportFragmentManager, "bottom_sheet_dialog")
+            }
             showMarkers(it)
         }
 
@@ -56,8 +57,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemCli
             for (element in list) {
                 addMarker(element)
             }
-            val item : Vehicle
-            item=list.get(0)
+            val item = list[0]
 
             val location = LatLng(item.latitude!!.toDouble(), item.longitude!!.toDouble())
             mMap.moveCamera(CameraUpdateFactory.newLatLng(location))

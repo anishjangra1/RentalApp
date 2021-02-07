@@ -27,7 +27,8 @@ android {
         viewBinding true
     }
     defaultConfig {
-        applicationId "com.example.sampleapplication"
+
+        applicationId "com.ride"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         testInstrumentationRunner "com.google.samples.apps.sunflower.utilities.MainTestRunner"
@@ -92,12 +93,16 @@ dependencies {
     // kotlin coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutinesVersion"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
 
     // Hilt : requires Navigation-fragment-ktx
     kapt "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
     implementation "com.google.dagger:hilt-android:$rootProject.hiltVersion"
+
     implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
@@ -112,6 +117,9 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpLoggingVersion"
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Navigation component
+
 }
 repositories {
     mavenCentral()
