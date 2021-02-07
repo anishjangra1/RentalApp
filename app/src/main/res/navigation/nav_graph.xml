@@ -20,7 +20,17 @@
         android:id="@+id/loginFragment"
         android:name="com.ride.navigation.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_getStartedActivity"
+            app:destination="@id/getStartedActivity" />
+    </fragment>
+
+    <activity
+        android:id="@+id/getStartedActivity"
+        android:name="com.ride.GetStartedActivity"
+        android:label="fragment_first_screen"
+        tools:layout="@layout/fragment_first_screen" />
 
 
 </navigation>
