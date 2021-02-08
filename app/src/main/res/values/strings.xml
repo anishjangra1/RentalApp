@@ -7,6 +7,7 @@
     <string name="generate_otp">Generate Otp</string>
     <string name="resend_otp">Resend Otp</string>
     <string name="permissionDenied">Permission denied</string>
+<!--    <string name="map_key">AIzaSyDn69x47jU1dUdN_P7FmDmX2B_Jpf3gItY</string>-->
     <string name="map_key">AIzaSyBN0Q6MskTz8PqQBAJCF-3ERIzClFFKYZA</string>
     <string name="privacy">By continuing, you accept our </string>
     <string name="policy">Privacy Policy</string>

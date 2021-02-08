@@ -12,6 +12,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.libraries.places.api.Places
 import com.google.gson.Gson
 import com.ride.BPFragment
 import com.ride.GetPlansActivity
@@ -20,6 +21,7 @@ import com.ride.data.Vehicle
 import com.ride.databinding.ActivityMaps2Binding
 import com.ride.viewmodels.MapViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemClickListener {
@@ -39,7 +41,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemCli
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-
+        if (!Places.isInitialized()) {
+            Places.initialize(this@MapsActivity, getString(R.string.map_key), Locale.US);
+        }
         viewModel.availableVehicles.observe(this){
             val data = Gson().toJson(it)
             ShowLocationBottomSheet.newInstance(data).show(supportFragmentManager, "Dialog Fragment")
