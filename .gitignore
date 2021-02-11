@@ -25,3 +25,10 @@ Jenkinsfile
 /Jenkinsfile
 local.properties
 /.idea/compiler.xml
+
+.idea/
+gradle.properties
+gradle/
+gradlew
+gradlew.bat
+settings.gradle
