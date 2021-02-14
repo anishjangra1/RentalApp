@@ -1,58 +1,46 @@
 package com.ride
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
-import android.os.Handler
-import android.text.TextUtils
-import android.util.Log
 import android.view.View
-import android.view.ViewTreeObserver
-import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.observe
-
-import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.model.LatLngBounds.Builder
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.widget.Autocomplete
-import com.google.android.libraries.places.widget.AutocompleteActivity
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
-import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetBehavior.*
 import com.google.gson.Gson
+import com.ride.adaptor.MapListAdapter
+import com.ride.adaptor.VehicleItemListener
 import com.ride.data.Vehicle
-import com.ride.databinding.ActivityMaps2Binding
+import com.ride.databinding.ActivityMapBinding
 import com.ride.utils.Constant
 import com.ride.utils.GpsUtils
 import com.ride.viewmodels.MapViewModel
-import com.ride.views.ShowLocationBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
-
 import java.io.IOException
 import java.util.*
-import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class MapActivity : AppCompatActivity(), OnMapReadyCallback , BPFragment.ItemClickListener{
+    private var mapLoaded: Boolean = false
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<NestedScrollView>
+    private lateinit var binding: ActivityMapBinding
     private var ivBack: ImageView? = null;
     private lateinit var mMap: GoogleMap
     private var mFusedLocationClient: FusedLocationProviderClient? = null
@@ -64,13 +52,44 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback , BPFragment.ItemCli
     private var wayLatitude = 0.0
     private var wayLongitude = 0.0
     private val isContinue = false
-//    private lateinit var mMap: GoogleMap
-    private lateinit var binding: ActivityMaps2Binding
 
     val viewModel: MapViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_map)
+
+        val arguments = intent.extras
+
+        println("MapsActivity: ${arguments!!.getInt("user_id")}")
+        println("MapsActivity: ${arguments!!.getString("mobile_number")}")
+
+        binding = ActivityMapBinding.inflate(layoutInflater).apply {
+            setContentView(this.root)
+        }
+        bottomSheetBehavior = from(binding.bottomSheetView).apply {
+            addBottomSheetCallback( object : BottomSheetCallback() {
+                override fun onStateChanged(bottomSheet: View, newState: Int) {
+                    when (newState) {
+                        STATE_EXPANDED -> { // move map
+                            if(mapLoaded) {
+//                                mMap.animateCamera(CameraUpdateFactory.scrollBy(0.0f, 400f))
+                            }
+                        }
+                        STATE_COLLAPSED -> { // TODO: 13/02/21 move back map to initial place }
+                            if(mapLoaded) {
+//                                mMap.animateCamera(CameraUpdateFactory.scrollBy(0.0f, -400f))
+                            }
+                        }
+
+                    }
+                }
+
+                override fun onSlide(bottomSheet: View, slideOffset: Float) {
+//                    println("slideOffset: $slideOffset")
+                }
+
+            })
+        }
 
 //        if (!Places.isInitialized()) {
 //            Places.initialize(this@MapActivity, getString(R.string.map_key), Locale.US);
@@ -91,9 +110,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback , BPFragment.ItemCli
         }
         viewModel.availableVehicles.observe(this){
             val data = Gson().toJson(it)
-            ShowLocationBottomSheet.newInstance(data).show(supportFragmentManager, "Dialog Fragment")
-
             showMarkers(it)
+            binding.rvLocations.adapter = MapListAdapter(
+                VehicleItemListener {
+                },
+                it)
+            bottomSheetBehavior.state = STATE_EXPANDED
+//            ShowLocationBottomSheet.newInstance(data).show(supportFragmentManager, "Dialog Fragment")
+//            showMarkers(it)
         }
 
         viewModel.getNearbyVehicles()
@@ -107,9 +131,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback , BPFragment.ItemCli
             for (element in list) {
                 addMarker(element)
             }
-            val item : Vehicle
-            item=list.get(0)
-
+            val item : Vehicle = list[0]
             val location = LatLng(item.latitude!!.toDouble(), item.longitude!!.toDouble())
             mMap.moveCamera(CameraUpdateFactory.newLatLng(location))
             mMap.animateCamera(CameraUpdateFactory.zoomIn());
@@ -125,6 +147,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback , BPFragment.ItemCli
                 false
             })
         }
+
+        mapLoaded = true
     }
 
     private fun addMarker(item: Vehicle) {
@@ -220,12 +244,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback , BPFragment.ItemCli
 
     override fun onMapReady(googleMap: GoogleMap?) {
         mMap = googleMap!!
-
         mMap.setOnInfoWindowClickListener { marker ->
             val latLon: LatLng = marker.position
             var position = getMarkerIndex(marker.id)
+        }
 
-
+        mMap.setOnMapLoadedCallback {
+            println("Map: Loaded completely!")
         }
     }
 

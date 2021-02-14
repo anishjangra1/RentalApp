@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.ride.login.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash"
+        >
+        <action android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@+id/loginFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_enter"
+
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ride.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action android:id="@+id/action_loginFragment_to_mainActivity"
+            app:destination="@+id/mapActivity"
+            >
+            <argument
+                android:name="user_id"
+                app:argType="integer" />
+            <argument
+                android:name="mobile_number"
+                app:argType="string" />
+        </action>
+
+    </fragment>
+
+    <activity
+        android:id="@+id/mapActivity"
+        android:name="com.ride.MapActivity"
+        android:label="MapActivity"
+        tools:layout="@layout/activity_map"
+        />
+
+</navigation>

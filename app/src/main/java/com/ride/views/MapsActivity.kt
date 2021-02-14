@@ -18,7 +18,8 @@ import com.ride.BPFragment
 import com.ride.GetPlansActivity
 import com.ride.R
 import com.ride.data.Vehicle
-import com.ride.databinding.ActivityMaps2Binding
+import com.ride.databinding.ActivityMapBinding
+import com.ride.login.LoginFragmentDirections
 import com.ride.viewmodels.MapViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -26,15 +27,16 @@ import java.util.*
 @AndroidEntryPoint
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemClickListener {
 
+    private lateinit var binding: ActivityMapBinding
     private lateinit var mMap: GoogleMap
-    private lateinit var binding: ActivityMaps2Binding
+
 
     val viewModel: MapViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMaps2Binding.inflate(layoutInflater)
+        binding = ActivityMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -60,8 +62,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemCli
             for (element in list) {
                 addMarker(element)
             }
-            val item : Vehicle
-            item=list.get(0)
+            val item : Vehicle = list[0]
 
             val location = LatLng(item.latitude!!.toDouble(), item.longitude!!.toDouble())
             mMap.moveCamera(CameraUpdateFactory.newLatLng(location))

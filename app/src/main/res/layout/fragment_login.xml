@@ -9,7 +9,7 @@
     android:id="@+id/main_container"
     tools:context=".GetStartedActivity">
 
-    <ProgressBar android:id="@+id/loading_spinner"
+    <ProgressBar android:id="@+id/loadingSpinner"
         style="?android:progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

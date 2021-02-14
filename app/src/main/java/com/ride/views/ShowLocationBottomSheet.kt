@@ -36,16 +36,16 @@ class ShowLocationBottomSheet : BottomSheetDialogFragment() {
         binding =
             BottomSheetShowLocationsBinding.inflate(layoutInflater, container, false)
 
-        mapAdapter = MapListAdapter(VehicleItemListener {
-            // Navigate
-        })
+//        mapAdapter = MapListAdapter(VehicleItemListener {
+//            // Navigate
+//        })
 
-        binding.rvLocations.adapter = mapAdapter
-
-        if(!data.isNullOrBlank()){
-            val list = Gson().fromJson<List<Vehicle>>(data, List::class.java)
-            mapAdapter.submitData(list)
-        }
+//        binding.rvLocations.adapter = mapAdapter
+//
+//        if(!data.isNullOrBlank()){
+//            val list = Gson().fromJson<List<Vehicle>>(data, List::class.java)
+//            mapAdapter.submitData(list)
+//        }
         return binding.root
     }
 

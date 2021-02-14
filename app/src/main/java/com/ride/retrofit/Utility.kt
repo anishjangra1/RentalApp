@@ -162,7 +162,7 @@ object Utils {
     }
 
     fun activityCloseTransition(activity: Activity) {
-        activity.overridePendingTransition(0, R.anim.push_bottom_out);
+//        activity.overridePendingTransition(0, R.anim.push_bottom_out);
     }
 
     fun getImageContentUri(

@@ -8,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ride.data.Vehicle
 import com.ride.databinding.ItemLocationBinding
 
-class MapListAdapter (private val listener: VehicleItemListener) : RecyclerView.Adapter<MapListAdapter.ViewHolder>() {
-
-    var data: List<Vehicle>? = null
+class MapListAdapter (
+    private val listener: VehicleItemListener,
+    var data: List<Vehicle>
+    ) : RecyclerView.Adapter<MapListAdapter.ViewHolder>() {
 
     class ViewHolder(
         private val binding: ItemLocationBinding,
@@ -31,14 +32,12 @@ class MapListAdapter (private val listener: VehicleItemListener) : RecyclerView.
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        data?.get(position)?.let { holder.bind(it) }
+        holder.bind(data[position])
     }
 
-    override fun getItemCount(): Int {
-        return if(data == null) 0 else data!!.size
-    }
+    override fun getItemCount() = data.size
 
-    public fun submitData(list: List<Vehicle>){
+    public fun changeData(list: List<Vehicle>){
         data = list
         notifyDataSetChanged()
     }
