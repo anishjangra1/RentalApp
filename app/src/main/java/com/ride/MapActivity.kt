@@ -25,8 +25,8 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.*
 import com.google.gson.Gson
-import com.ride.adaptor.MapListAdapter
-import com.ride.adaptor.VehicleItemListener
+import com.ride.adapters.MapListAdapter
+import com.ride.adapters.VehicleItemListener
 import com.ride.data.Vehicle
 import com.ride.databinding.ActivityMapBinding
 import com.ride.utils.Constant
@@ -506,7 +506,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback , BPFragment.ItemCli
     }
 
     override fun onItemClick(item: String) {
-        startActivity(Intent(this, GetPlansActivity::class.java))
+//        startActivity(Intent(this, GetPlansActivity::class.java))
         finish()
     }
 }

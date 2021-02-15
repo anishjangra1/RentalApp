@@ -1,4 +1,4 @@
-package com.ride.adaptor
+package com.ride.adapters
 
 import android.view.LayoutInflater
 import android.view.View

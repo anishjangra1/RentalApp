@@ -15,11 +15,9 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
 import com.google.gson.Gson
 import com.ride.BPFragment
-import com.ride.GetPlansActivity
 import com.ride.R
 import com.ride.data.Vehicle
 import com.ride.databinding.ActivityMapBinding
-import com.ride.login.LoginFragmentDirections
 import com.ride.viewmodels.MapViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -115,7 +113,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemCli
     }
 
     override fun onItemClick(item: String) {
-        startActivity(Intent(this, GetPlansActivity::class.java))
+//        startActivity(Intent(this, GetPlansActivity::class.java))
         finish()
     }
 }

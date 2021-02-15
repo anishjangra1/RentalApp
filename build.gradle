@@ -24,7 +24,7 @@ buildscript {
         targetSdkVersion = 30
 
         // App dependencies
-        appCompatVersion = '1.1.0'
+        appCompatVersion = '1.2.0'
         constraintLayoutVersion = '2.0.0-beta3'
         coroutinesVersion = "1.4.2"
         fragmentVersion = '1.1.0-alpha09'

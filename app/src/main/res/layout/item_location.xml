@@ -9,7 +9,7 @@
             type="com.ride.data.Vehicle" />
         <variable
             name="clickListener"
-            type="com.ride.adaptor.VehicleItemListener" />
+            type="com.ride.adapters.VehicleItemListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,7 +35,7 @@
             app:layout_constraintStart_toEndOf="@+id/navigation"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="15dp"
-            android:textSize="@dimen/size_medium"
+            android:textSize="@dimen/medium_text"
             android:textColor="@color/black"
             android:layout_marginStart="@dimen/_medium"
             android:text="@{vehicle.name}"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@+id/navigation"
             app:layout_constraintTop_toBottomOf="@id/title"
-            android:textSize="@dimen/size_small"
+            android:textSize="@dimen/small_text"
             android:textColor="@color/grey"
             android:layout_marginStart="@dimen/_medium"
             android:text="@{vehicle.vehicleNo}"

@@ -1,6 +1,6 @@
 package com.ride.retrofit
 
-import com.ride.data.PlanResponse
+import com.ride.data.Plan
 import com.ride.data.ValidateOtpResponse
 import com.ride.data.Vehicle
 import okhttp3.OkHttpClient
@@ -10,7 +10,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 
@@ -40,7 +39,7 @@ interface RestApiService {
 
 
     @GET("rental_plan/all")
-    suspend fun getPlan(): Response<List<PlanResponse>>
+    suspend fun getPlan(): Response<List<Plan>>
 
 
     companion object {

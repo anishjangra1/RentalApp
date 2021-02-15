@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
 }
 }
  */
-data class PlanResponse (
+data class Plan (
 
         @SerializedName("id")
         var id: Int? = null,
@@ -34,6 +34,7 @@ data class PlanResponse (
 
         @SerializedName("bpMasterId")
         var bpMasterId: Int? = null,
-){
 
+        var isPlanSelected: Boolean = false
+){
 }

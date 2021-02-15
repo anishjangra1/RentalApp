@@ -26,7 +26,7 @@ class AppRepository @Inject constructor(private val service: RestApiService){
         return service.getNearbyVehicles(latitude, longitude)
     }
 
-    suspend fun getRidePlans(): Response<List<PlanResponse>>{
+    suspend fun getRidePlans(): Response<List<Plan>>{
         return service.getPlan()
     }
 

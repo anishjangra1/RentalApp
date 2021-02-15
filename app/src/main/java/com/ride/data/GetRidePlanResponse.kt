@@ -10,12 +10,12 @@ import com.google.gson.annotations.SerializedName
 }
  */
 data class GetRidePlanResponse (
-        @SerializedName("msg")
+    @SerializedName("msg")
         var msg: String? = null,
 
-        @SerializedName("status")
+    @SerializedName("status")
         var status: Int? = null,
 
-        @SerializedName("customer")
-        var planResponse: PlanResponse? = null,
+    @SerializedName("customer")
+        var plan: Plan? = null,
 )

@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="background">#2b2d33</color>
+    <color name="colorPrimary">#202226</color>
+    <color name="colorAccent">#E6182A</color>
     <color name="button_inactive">#55575c</color>
     <color name="grey">#707070</color>
     <color name="red">#ED3237</color>

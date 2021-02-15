@@ -5,14 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.gson.Gson
-import com.ride.BPFragment
-import com.ride.adaptor.MapListAdapter
-import com.ride.adaptor.VehicleItemListener
-import com.ride.data.Vehicle
+import com.ride.adapters.MapListAdapter
 import com.ride.databinding.BottomSheetShowLocationsBinding
-import com.ride.retrofit.Utility
-import com.ride.utility.Util
 
 class ShowLocationBottomSheet : BottomSheetDialogFragment() {
 
