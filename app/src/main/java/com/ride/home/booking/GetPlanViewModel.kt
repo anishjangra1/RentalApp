@@ -1,4 +1,4 @@
-package com.ride.booking
+package com.ride.home.booking
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,6 +24,9 @@ class GetPlanViewModel @Inject internal constructor(
     private var _changePlan = MutableLiveData<Plan>()
     var changePlan = _changePlan
 
+    private var _startRide = MutableLiveData(false)
+    var startRide = _startRide
+
     fun getPlans(){
         viewModelScope.launch(Dispatchers.IO) {
             val response = repository.getRidePlans()
@@ -42,6 +45,14 @@ class GetPlanViewModel @Inject internal constructor(
     fun selectPlan(plan: Plan){
         getPlansResponse.selectPlan(plan)
         changePlan.value = plan
+    }
+
+    fun removeObserver(){
+        _startRide.value = false
+    }
+
+    fun startRide(){
+        _startRide.value = true
     }
 
 

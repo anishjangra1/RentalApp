@@ -3,6 +3,7 @@
     <dimen name="_medium">10dp</dimen>
     <dimen name="_small">8dp</dimen>
     <dimen name="mini">5dp</dimen>
+    <dimen name="large">18dp</dimen>
 
     <dimen name="small_text">12sp</dimen>
     <dimen name="medium_text">16sp</dimen>
@@ -11,5 +12,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="plan_view_height">225dp</dimen>
 
 </resources>

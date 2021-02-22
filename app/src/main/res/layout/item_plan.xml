@@ -10,85 +10,92 @@
 
         <variable
             name="rideViewModel"
-            type="com.ride.booking.GetPlanViewModel" />
+            type="com.ride.home.booking.GetPlanViewModel" />
 
         <variable
             name="itemClickListener"
             type="com.ride.adapters.ItemListener&lt;com.ride.data.Plan>" />
     </data>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:onClick="@{(view) -> itemClickListener.onClick(plan)}"
-        app:cardCornerRadius="@dimen/mini">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_medium">
+            android:layout_height="@dimen/plan_view_height"
+            android:background="@drawable/bg_rounded_corners_with_grey_stroke"
+            android:onClick="@{(view) -> itemClickListener.onClick(plan)}"
+            >
+
 
             <TextView
-                android:id="@+id/tvPlanName"
-                android:layout_width="wrap_content"
+                android:id="@+id/title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{plan.plan}"
                 android:visibility="visible"
-                android:textSize="@dimen/big_text"
+                android:textSize="@dimen/medium_text"
                 android:textStyle="bold"
+                android:padding="@dimen/large"
+                android:background="@drawable/bg_2_rounded_corners_with_grey_color"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:text="PROMOTIONAL"
+                tools:text="PLAN NAME"
                 />
+
 
             <TextView
                 android:id="@+id/tvDuration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{plan.duration.toString()}"
-                android:visibility="visible"
-                android:textSize="@dimen/large_text"
-                android:textStyle="italic"
+                android:layout_margin="@dimen/large"
+                app:duration="@{plan.duration}"
                 android:textColor="@color/grey"
-                app:layout_constraintTop_toBottomOf="@+id/tvPlanName"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="@dimen/small_text"
+                android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:text="1 hr"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                tools:text="Durations 6hrs" />
 
 
             <TextView
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rs 999"
-                android:visibility="visible"
-                android:textSize="@dimen/big_text"
-                android:textStyle="bold"
+                android:layout_marginStart="@dimen/large"
+                android:layout_marginTop="@dimen/large"
                 android:textColor="@color/colorAccent"
-                app:ridePlanPrice="@{plan.rate}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="₹ 12"
-                />
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="@dimen/medium_text"
+                android:visibility="visible"
+                app:amount="@{plan.rate}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDuration"
+                tools:text="₹ 12" />
+
+
 
             <TextView
-                android:id="@+id/tvSelect"
-                android:layout_width="wrap_content"
+                android:id="@+id/bookNow"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
-                android:text="@{plan.isPlanSelected ?  @string/text_selected : @string/text_empty}"
+                android:text="@string/book_now"
                 android:visibility="visible"
-                android:textSize="@dimen/big_text"
-                android:textStyle="italic"
+                android:textSize="@dimen/medium_text"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="@drawable/button_rounded_side_with_dark_grey_stroke"
+                android:layout_marginLeft="@dimen/_medium"
+                android:layout_marginStart="@dimen/_medium"
+                android:textColor="@color/black"
+                android:padding="@dimen/_medium"
+                android:layout_margin="@dimen/large"
+                app:layout_constraintTop_toBottomOf="@id/tvPrice"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDuration"
-                android:textColor="@color/colorAccent"
-                tools:text="selected"
+                tools:text="Book Now"
                 />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
 
 </layout>

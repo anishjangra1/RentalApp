@@ -1,6 +1,5 @@
 package com.ride.views
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +17,7 @@ import com.ride.BPFragment
 import com.ride.R
 import com.ride.data.Vehicle
 import com.ride.databinding.ActivityMapBinding
-import com.ride.viewmodels.MapViewModel
+import com.ride.viewmodels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -29,7 +28,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, BPFragment.ItemCli
     private lateinit var mMap: GoogleMap
 
 
-    val viewModel: MapViewModel by viewModels()
+    val viewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_navigation"
-    app:startDestination="@+id/navigation_ride">
+    app:startDestination="@+id/navigation_home">
 
     <fragment
-        android:id="@+id/navigation_ride"
-        android:name="com.ride.home.ui.home.RideFragment"
-        android:label="@string/title_ride"
-        tools:layout="@layout/fragment_ride" >
+        android:id="@+id/navigation_home"
+        android:name="com.ride.home.booking.ride.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+
         <action
-            android:id="@+id/action_rideFragment_to_plansFragment"
+            android:id="@+id/action_homeFragment_to_plansFragment"
             app:destination="@+id/plansFragment"
             app:enterAnim="@anim/fragment_fade_enter"
             app:exitAnim="@anim/fragment_fade_exit"
@@ -20,25 +21,56 @@
             />
     </fragment>
 
+
     <fragment
-        android:id="@+id/navigation_history"
+        android:id="@+id/navigation_search"
+        android:name="com.ride.home.search.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_history" />
+
+
+    <fragment
+        android:id="@+id/navigation_order"
         android:name="com.ride.home.ui.history.HistoryFragment"
-        android:label="@string/title_history"
+        android:label="@string/title_order"
         tools:layout="@layout/fragment_history" />
 
     <fragment
-        android:id="@+id/navigation_profile"
+        android:id="@+id/navigation_account"
         android:name="com.ride.home.ui.profile.ProfileFragment"
-        android:label="@string/title_profile"
+        android:label="@string/title_account"
         tools:layout="@layout/fragment_profile" />
 
 
     <fragment
         android:id="@+id/plansFragment"
-        android:name="com.ride.booking.PlansFragment"
+        android:name="com.ride.home.booking.PlansFragment"
         android:label="Plans"
         tools:layout="@layout/fragment_plans"
-        />
+        >
+        <action android:id="@+id/action_planFragment_to_startRideFragment"
+            app:destination="@+id/startRideFragment"
+            app:popUpTo="@+id/navigation_ride"
+            app:popUpToInclusive="false"/>
+    </fragment>
 
+    <fragment
+        android:id="@+id/startRideFragment"
+        android:name="com.ride.home.booking.ride.StartRideFragment"
+        android:label="@string/start_ride"
+        tools:layout="@layout/fragment_track_ride" >
+
+        <action android:id="@+id/action_startRideFragment_to_startRideFragment"
+            app:destination="@+id/rideStartedFragment"
+            app:popUpToInclusive="false"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/rideStartedFragment"
+        android:name="com.ride.home.booking.ride.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+    </fragment>
 
 </navigation>

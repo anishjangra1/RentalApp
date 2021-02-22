@@ -19,10 +19,33 @@
     <!--Bottom navigation -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_ride">Ride</string>
-    <string name="title_history">History</string>
-    <string name="title_profile">Profile</string>
+    <string name="title_home">Home</string>
+    <string name="title_order">Order</string>
+    <string name="title_account">Account</string>
+    <string name="title_search">Search</string>
 
     <string name="text_selected">Selected</string>
     <string name="text_empty" />
+    <string name="start_ride">Start Ride</string>
+    <string name="text_proceed_to_pay">Proceed to pay</string>
+
+    <!-- Permissions -->
+    <string name="permission_rationale_location">Access to the location service is required to demonstrate the \'my location\' feature, which shows your current location on the map.</string>
+    <string name="location_permission_denied">This sample requires location permission to enable the \'my location\' layer. Please try again and grant access to use the location.\nIf the permission has been permanently denied, it can be enabled from the System Settings &gt; Apps &gt; \'Google Maps API Demos\'.</string>
+    <string name="permission_required_toast">Location permission is required for this demo.</string>
+    <string name="title_activity_test">TestActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="near_by_bp_s">Near by BP\'s</string>
+
+    <string name="text_price_is">Price ₹%1$.0f</string>
+    <string name="text_duration_is">Duration \n₹%1$s</string>
+    <string name="book_now">Book Now</string>
+
 </resources>

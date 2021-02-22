@@ -15,8 +15,7 @@
         <action android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@+id/loginFragment"
             app:enterAnim="@anim/fragment_fade_enter"
-            app:exitAnim="@anim/fragment_fade_enter"
-
+            app:exitAnim="@anim/fragment_fade_exit"
             />
     </fragment>
 
@@ -26,7 +25,7 @@
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action android:id="@+id/action_loginFragment_to_mainActivity"
-            app:destination="@+id/mapActivity"
+            app:destination="@+id/mainActivity"
             >
             <argument
                 android:name="user_id"
@@ -39,8 +38,8 @@
     </fragment>
 
     <activity
-        android:id="@+id/mapActivity"
-        android:name="com.ride.MapActivity"
+        android:id="@+id/mainActivity"
+        android:name="com.ride.home.MainActivity"
         android:label="MapActivity"
         tools:layout="@layout/activity_map"
         />

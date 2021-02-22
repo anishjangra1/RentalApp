@@ -10,9 +10,13 @@
     <color name="background">#2b2d33</color>
     <color name="colorPrimary">#202226</color>
     <color name="colorAccent">#E6182A</color>
+
     <color name="button_inactive">#55575c</color>
     <color name="grey">#707070</color>
     <color name="red">#ED3237</color>
+    <color name="light_grey">#F2F2F2</color>
+    <color name="light_grey_header_plan">#E7E7E7</color>
+
 
     <color name="bottom_background">#F5F5F5</color>
     <color name="background_grey_color">#F5F5F5</color>
@@ -23,4 +27,5 @@
     <color name="dark_green_color">#0B726E</color>
     <color name="light_green_color">#11A298</color>
     <color name="fab_secondary_text_color">#AEBADA</color>
+    <color name="divider_color">@color/light_grey</color>
 </resources>

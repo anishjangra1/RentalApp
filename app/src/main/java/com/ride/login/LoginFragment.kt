@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.ride.R
 import com.ride.databinding.FragmentLoginBinding
 import com.ride.utility.AlertUtil
@@ -52,7 +51,7 @@ class LoginFragment : Fragment() {
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
                     if(s?.length.toString() == MOBILE_LENGTH){
-                        btnGenerateOtp?.setBackgroundResource(R.drawable.button_rounded_active)
+                        btnGenerateOtp?.setBackgroundResource(R.drawable.bg_rounded_corners_with_grey_stroke)
                         btnGenerateOtp!!.setTextColor(Color.parseColor("#000000"));
                     }else{
                         btnGenerateOtp?.setBackgroundResource(R.drawable.button_rounded_inactive)

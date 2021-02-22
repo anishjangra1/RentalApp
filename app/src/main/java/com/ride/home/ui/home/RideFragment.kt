@@ -8,10 +8,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import com.google.android.gms.location.*
@@ -19,16 +19,16 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
 import com.ride.R
 import com.ride.data.Vehicle
 import com.ride.databinding.FragmentRideBinding
+import com.ride.home.MainViewModel
 import com.ride.utils.Constant
 import com.ride.utils.GpsUtils
-import com.ride.viewmodels.MapViewModel
+import com.ride.viewmodels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
 import java.util.*
@@ -38,9 +38,13 @@ import java.util.*
 class RideFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-    val viewModel: MapViewModel by viewModels()
+    val viewModel: HomeViewModel by viewModels()
 
     private var _binding: FragmentRideBinding? = null
+
+    private val mainViewModel: MainViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+    }
 
     private val binding get() = _binding!!
     private var mFusedLocationClient: FusedLocationProviderClient? = null
@@ -84,6 +88,10 @@ class RideFragment : Fragment(), OnMapReadyCallback {
         initializeMapAndLocation()
     }
 
+    override fun onResume() {
+        super.onResume()
+        mainViewModel.showBottomNavigation(true)
+    }
 
     private fun showMarkers(list: List<Vehicle>?) {
         list?.let {
@@ -107,7 +115,7 @@ class RideFragment : Fragment(), OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location))
         mMap.animateCamera(CameraUpdateFactory.zoomIn());
         // Zoom out to zoom level 10, animating with a duration of 1 seconds.
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(15F), 1000, null);
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(10F), 500, null);
     }
 
     private fun initializeMapAndLocation() {
@@ -122,7 +130,7 @@ class RideFragment : Fragment(), OnMapReadyCallback {
         locationRequest?.fastestInterval = 5 * 1000.toLong()
 
 
-        GpsUtils(requireContext())
+        GpsUtils(requireActivity())
             .turnGPSOn(object : GpsUtils.onGpsListener {
                 override fun gpsStatus(isGPSEnable: Boolean) {
                     isGPS = isGPSEnable
@@ -227,7 +235,7 @@ class RideFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap.setOnInfoWindowClickListener {
-            binding.root.findNavController().navigate(R.id.action_rideFragment_to_plansFragment)
+//            binding.root.findNavController().navigate(R.id.action_home)
 //            Toast.makeText(requireContext(), "Window info clicked", Toast.LENGTH_LONG).show()
         }
     }

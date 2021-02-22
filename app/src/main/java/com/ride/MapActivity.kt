@@ -1,7 +1,6 @@
 package com.ride
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -31,7 +30,7 @@ import com.ride.data.Vehicle
 import com.ride.databinding.ActivityMapBinding
 import com.ride.utils.Constant
 import com.ride.utils.GpsUtils
-import com.ride.viewmodels.MapViewModel
+import com.ride.viewmodels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
 import java.util.*
@@ -53,7 +52,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback , BPFragment.ItemCli
     private var wayLongitude = 0.0
     private val isContinue = false
 
-    val viewModel: MapViewModel by viewModels()
+    val viewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
