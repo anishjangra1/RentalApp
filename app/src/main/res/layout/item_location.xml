@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:onClick="@{(view)-> clickListener.onClick(vehicle, view)}"
-        android:padding="@dimen/large"
+        android:padding="@dimen/_large"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageView

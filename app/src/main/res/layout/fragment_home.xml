@@ -57,7 +57,7 @@
                 android:drawablePadding="@dimen/_medium"
                 android:textColor="@color/black"
                 android:fontFamily="@font/roboto_regular"
-                android:padding="@dimen/large"/>
+                android:padding="@dimen/_large"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvLocations"

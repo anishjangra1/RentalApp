@@ -1,23 +1,19 @@
 package com.ride.home.booking
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.ride.R
 import com.ride.adapters.ItemListener
-import com.ride.adapters.RidePlanAdapter
+import com.ride.adapters.PlanAdapter
 import com.ride.databinding.FragmentPlansBinding
 import com.ride.home.MainViewModel
-import com.ride.home.booking.ride.HomeFragment
 import com.ride.utils.SpaceItemDecoration
-import com.truefan.user.helper.GridSpacingItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val ARG_PARAM1 = "param1"
@@ -25,7 +21,7 @@ private const val ARG_PARAM2 = "param2"
 @AndroidEntryPoint
 class PlansFragment : Fragment() {
 
-    private lateinit var rideAdapter: RidePlanAdapter
+    private lateinit var adapter: PlanAdapter
     private lateinit var binding: FragmentPlansBinding
     private var param1: String? = null
     private var param2: String? = null
@@ -51,6 +47,10 @@ class PlansFragment : Fragment() {
         binding = FragmentPlansBinding.inflate(layoutInflater, container, false).apply {
             getPlansViewModel = viewModel
             loadingSpinner.visibility = View.VISIBLE
+            toolbar.setNavigationIcon(R.drawable.baseline_arrow_back_24)
+            toolbar.setNavigationOnClickListener{
+                requireActivity().onBackPressed()
+            }
         }
         return binding.root
     }
@@ -65,20 +65,25 @@ class PlansFragment : Fragment() {
         // Observe plans
         viewModel.planResponseList.observe(viewLifecycleOwner){
             binding.loadingSpinner.visibility = View.GONE
-            rideAdapter = RidePlanAdapter(it, ItemListener{ plan ->
+            adapter = PlanAdapter(it, ItemListener{ plan ->
                 // On Plan selected
-                viewModel.selectPlan(plan)
-                log("item clicked -> selected plan is ${plan.id}")
+                plan.let {
+                    binding.root.findNavController().navigate(
+                        PlansFragmentDirections.actionPlanFragmentToPaymentFragment(
+                            plan.id!!,
+                            plan.plan!!,
+                            plan.rate!!
+                        )
+                    )
+//                    binding.root.findNavController().navigate(R.id.action_planFragment_to_paymentFragment)
+                }
+
             })
 //            binding.rvPlans.addItemDecoration(
 //                GridSpacingItemDecoration(1, 30, true, 0)
 //            )
             binding.rvPlans.addItemDecoration(SpaceItemDecoration(15))
-            binding.rvPlans.adapter = rideAdapter
-        }
-
-        viewModel.changePlan.observe(viewLifecycleOwner){
-            rideAdapter.notifyDataSetChanged()
+            binding.rvPlans.adapter = adapter
         }
 
         registerObservers()

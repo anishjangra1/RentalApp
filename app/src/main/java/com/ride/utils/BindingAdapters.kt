@@ -8,7 +8,7 @@ object BindingAdapters{
 
     @BindingAdapter("app:amount")
     @JvmStatic
-    fun onSubscriptionPlanPrice(
+    fun setPrice(
         view: TextView,
         amount: Float?,
     ) {

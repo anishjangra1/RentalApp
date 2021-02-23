@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ride.data.Plan
 import com.ride.databinding.ItemPlanBinding
 
-class RidePlanAdapter(
+class PlanAdapter(
     private val planList: List<Plan>,
     private var itemListener: ItemListener<Plan>
-) : RecyclerView.Adapter<RidePlanAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<PlanAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(ItemPlanBinding.inflate(LayoutInflater.from(parent.context), parent, false))

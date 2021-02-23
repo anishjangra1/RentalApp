@@ -48,29 +48,51 @@
         android:label="Plans"
         tools:layout="@layout/fragment_plans"
         >
-        <action android:id="@+id/action_planFragment_to_startRideFragment"
+        <action android:id="@+id/action_planFragment_to_paymentFragment"
+            app:destination="@+id/paymentFragment" >
+
+            <argument
+                android:name="planId"
+                app:argType="integer"
+                android:defaultValue="0"
+                />
+
+            <argument
+                android:name="planName"
+                app:argType="string"
+                android:defaultValue="Plan"
+                />
+
+            <argument
+                android:name="amount"
+                app:argType="float"
+                android:defaultValue="0.0"
+                />
+
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.ride.payment.PaymentFragment"
+        android:label="Payment Options"
+        tools:layout="@layout/fragment_payment"
+        >
+        <action
+            android:id="@+id/action_paymentFragment_to_startRideFragment"
             app:destination="@+id/startRideFragment"
-            app:popUpTo="@+id/navigation_ride"
-            app:popUpToInclusive="false"/>
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="false"
+            />
     </fragment>
 
     <fragment
         android:id="@+id/startRideFragment"
         android:name="com.ride.home.booking.ride.StartRideFragment"
         android:label="@string/start_ride"
-        tools:layout="@layout/fragment_track_ride" >
+        tools:layout="@layout/fragment_ride_start" >
 
-        <action android:id="@+id/action_startRideFragment_to_startRideFragment"
-            app:destination="@+id/rideStartedFragment"
-            app:popUpToInclusive="false"/>
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/rideStartedFragment"
-        android:name="com.ride.home.booking.ride.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
     </fragment>
 
 </navigation>

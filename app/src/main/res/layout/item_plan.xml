@@ -21,9 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/plan_view_height"
             android:background="@drawable/bg_rounded_corners_with_grey_stroke"
-            android:onClick="@{(view) -> itemClickListener.onClick(plan)}"
             >
-
 
             <TextView
                 android:id="@+id/title"
@@ -33,7 +31,7 @@
                 android:visibility="visible"
                 android:textSize="@dimen/medium_text"
                 android:textStyle="bold"
-                android:padding="@dimen/large"
+                android:padding="@dimen/_large"
                 android:background="@drawable/bg_2_rounded_corners_with_grey_color"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintTop_toTopOf="parent"
@@ -46,7 +44,7 @@
                 android:id="@+id/tvDuration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/large"
+                android:layout_margin="@dimen/_large"
                 app:duration="@{plan.duration}"
                 android:textColor="@color/grey"
                 android:fontFamily="@font/roboto_regular"
@@ -61,8 +59,8 @@
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/large"
-                android:layout_marginTop="@dimen/large"
+                android:layout_marginStart="@dimen/_large"
+                android:layout_marginTop="@dimen/_large"
                 android:textColor="@color/colorAccent"
                 android:fontFamily="@font/roboto_regular"
                 android:textSize="@dimen/medium_text"
@@ -88,12 +86,12 @@
                 android:layout_marginStart="@dimen/_medium"
                 android:textColor="@color/black"
                 android:padding="@dimen/_medium"
-                android:layout_margin="@dimen/large"
+                android:onClick="@{(view) -> itemClickListener.onClick(plan)}"
+                android:layout_margin="@dimen/_large"
                 app:layout_constraintTop_toBottomOf="@id/tvPrice"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="Book Now"
                 />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

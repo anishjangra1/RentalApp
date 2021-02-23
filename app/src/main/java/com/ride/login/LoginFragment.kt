@@ -127,6 +127,7 @@ class LoginFragment : Fragment() {
                     it1, consumer.mobileNoLogin!!
                 )
                 binding.root.findNavController().navigate(action)
+                requireActivity().finish()
             }
         }
     }

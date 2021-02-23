@@ -2,8 +2,9 @@
 <resources>
     <dimen name="_medium">10dp</dimen>
     <dimen name="_small">8dp</dimen>
-    <dimen name="mini">5dp</dimen>
-    <dimen name="large">18dp</dimen>
+    <dimen name="_mini">5dp</dimen>
+    <dimen name="_large">18dp</dimen>
+    <dimen name="_big">22dp</dimen>
 
     <dimen name="small_text">12sp</dimen>
     <dimen name="medium_text">16sp</dimen>
