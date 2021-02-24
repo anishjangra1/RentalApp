@@ -18,7 +18,22 @@
             app:exitAnim="@anim/fragment_fade_exit"
             app:popEnterAnim="@anim/fragment_fade_enter"
             app:popExitAnim="@anim/fragment_fade_exit"
-            />
+            >
+            <argument android:name="vehicleId"
+                app:argType="integer"
+                android:defaultValue="0"
+                />
+            <argument android:name="vehicleLat"
+                app:argType="float"
+                android:defaultValue="0.0"
+                />
+
+            <argument android:name="vehicleLng"
+                app:argType="float"
+                android:defaultValue="0.0"
+                />
+        </action>
+
     </fragment>
 
 
@@ -69,6 +84,20 @@
                 android:defaultValue="0.0"
                 />
 
+            <argument android:name="vehicleId"
+                app:argType="integer"
+                android:defaultValue="0"
+                />
+            <argument android:name="vehicleLat"
+                app:argType="float"
+                android:defaultValue="0.0"
+                />
+
+            <argument android:name="vehicleLng"
+                app:argType="float"
+                android:defaultValue="0.0"
+                />
+
         </action>
 
     </fragment>
@@ -80,11 +109,34 @@
         tools:layout="@layout/fragment_payment"
         >
         <action
-            android:id="@+id/action_paymentFragment_to_startRideFragment"
-            app:destination="@+id/startRideFragment"
+            android:id="@+id/action_paymentFragment_to_rideStartedFragment"
+            app:destination="@+id/rideStartedFragment"
             app:popUpTo="@id/navigation_home"
             app:popUpToInclusive="false"
-            />
+            >
+            <argument android:name="vehicleId"
+                app:argType="integer"
+                android:defaultValue="0"
+                />
+            <argument android:name="vehicleLat"
+                app:argType="float"
+                android:defaultValue="0.0"
+                />
+
+            <argument android:name="vehicleLng"
+                app:argType="float"
+                android:defaultValue="0.0"
+                />
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/rideStartedFragment"
+        android:name="com.ride.home.booking.ride.RideStartedFragment"
+        android:label="Ride Started"
+        tools:layout="@layout/fragment_ride_started" >
+
     </fragment>
 
     <fragment

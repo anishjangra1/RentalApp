@@ -28,7 +28,7 @@ class MapListAdapter (
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ItemLocationBinding.inflate(LayoutInflater.from(parent.context)), listener)
+        return ViewHolder(ItemLocationBinding.inflate(LayoutInflater.from(parent.context), parent, false), listener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

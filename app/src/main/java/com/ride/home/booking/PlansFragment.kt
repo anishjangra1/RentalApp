@@ -31,12 +31,18 @@ class PlansFragment : Fragment() {
         ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
     }
 
+    var vehicleId: Int? = null
+    var vehicleLat: Float? = null
+    var vehicleLng: Float? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            vehicleId = it.getInt("vehicleId")
+            vehicleLat = it.getFloat(getString(R.string.vehicle_lat))
+            vehicleLng = it.getFloat(getString(R.string.vehicle_lng))
         }
+        println("RideStartedFragment: arguments:  id = $vehicleId lat =  $vehicleLat  lng = $vehicleLng")
     }
 
     override fun onCreateView(
@@ -72,7 +78,10 @@ class PlansFragment : Fragment() {
                         PlansFragmentDirections.actionPlanFragmentToPaymentFragment(
                             plan.id!!,
                             plan.plan!!,
-                            plan.rate!!
+                            plan.rate!!,
+                            vehicleId!!,
+                            vehicleLat!!,
+                            vehicleLng!!
                         )
                     )
 //                    binding.root.findNavController().navigate(R.id.action_planFragment_to_paymentFragment)

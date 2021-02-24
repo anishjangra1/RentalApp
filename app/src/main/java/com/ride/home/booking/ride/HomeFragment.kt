@@ -2,17 +2,13 @@ package com.ride.home.booking.ride
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.DrawableRes
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
@@ -28,7 +24,6 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
@@ -112,7 +107,17 @@ class HomeFragment : Fragment(),
             showMarkers(it)
             binding.rvLocations.apply {
                 adapter = MapListAdapter(
-                VehicleItemListener {
+                VehicleItemListener { vehicle ->
+                    run {
+                        println("RideStartedFragment: arguments:  id = ${vehicle.id} lat =  ${vehicle.latitude}  lng = ${vehicle.longitude}")
+                        val action =
+                            HomeFragmentDirections.actionHomeFragmentToPlansFragment(
+                                vehicle.id!!,
+                                vehicle.latitude!!,
+                                vehicle.longitude!!
+                            )
+                        binding.root.findNavController().navigate(action)
+                    }
                 },
                 it)
                 addItemDecoration(
@@ -134,8 +139,17 @@ class HomeFragment : Fragment(),
                 addMarker(element)
             }
             map.setOnInfoWindowClickListener {
-            binding.root.findNavController().navigate(R.id.action_homeFragment_to_plansFragment)
-//            Toast.makeText(requireContext(), "Window info clicked", Toast.LENGTH_LONG).show()
+                val vehicle = viewModel.getVehicleById(it.tag as Int)
+                vehicle.let { value ->
+                    run {
+                        val action = HomeFragmentDirections.actionHomeFragmentToPlansFragment(
+                            value.id!!,
+                            value.latitude!!,
+                            value.longitude!!
+                        )
+                        binding.root.findNavController().navigate(action)
+                    }
+                }
             }
         }
 
@@ -143,13 +157,16 @@ class HomeFragment : Fragment(),
 
     private fun addMarker(item: Vehicle) {
         val location = LatLng(item.latitude!!.toDouble(), item.longitude!!.toDouble())
-        map.addMarker(
+        val marker = map.addMarker(
             MarkerOptions()
                 .position(location)
                 .title(item.name)
 //                .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_pin))
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.bike))
         )
+
+        // set id as a tag in marker
+        marker.tag  = item.id
     }
 //    If we want to set vector drawables  as marker
 //    private fun bitmapDescriptorFromVector(

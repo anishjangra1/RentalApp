@@ -1,4 +1,10 @@
 <resources>
+
+    <!-- GLOBAL -->
+    <string name="vehicle_id">vehicleId</string>
+    <string name="vehicle_lat">vehicleLat</string>
+    <string name="vehicle_lng">vehicleLng</string>
+
     <string name="app_name">Ride</string>
     <string name="splash_title">Ride. Park. Go.</string>
     <string name="splash_sub_title">Just book your bike and enjoy your ride</string>
